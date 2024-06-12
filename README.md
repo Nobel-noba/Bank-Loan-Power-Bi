@@ -32,7 +32,7 @@ To explore and interact with the Bank Loan Dashboard, follow these steps:
 
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/NobelMitiku/Power-Bi-Sample-Project ```
+   git clone https://github.com/NobelMitiku/Power-Bi-Sample-Project 
 1. **Open Power BI::**
 
 - Open Power BI Desktop.
