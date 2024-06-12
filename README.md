@@ -48,7 +48,7 @@ To explore and interact with the Bank Loan Dashboard, follow these steps:
 
 ## Problem Statement
 
-### Dashboard 1: Summary
+### Summary
 The first dashboard focuses on high-level Key Performance Indicators (KPIs) related to the bank's loan operations:
 
 - **Total Loan Applications:** Total number of loan applications received within a specific period. Includes Month-to-Date (MTD) Loan Applications and Month-over-Month (MoM) changes.
