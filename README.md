@@ -2,6 +2,7 @@
 
 ## Table of Contents
 - [Overview](#overview)
+- [Getting Started](#getting-started)
 - [Problem Statement](#problem-statement)
   - [Dashboard 1: Summary](#dashboard-1-summary)
   - [Dashboard 1: Good Loan vs. Bad Loan KPIs](#dashboard-1-good-loan-vs-bad-loan-kpis)
@@ -14,11 +15,32 @@
   - [Database and SQL](#database-and-sql)
   - [SQL Server](#sql-server)
   - [Power BI](#power-bi)
-- [Getting Started](#getting-started)
 - [Contribution](#contribution)
 
 ## Overview
 This project aims to create an interactive and comprehensive Power BI dashboard for a bank's loan portfolio. The dashboard provides insights into various aspects of loan applications, funding, and repayments, aiding data-driven decision-making.
+
+
+
+## Getting Started
+
+To explore and interact with the Bank Loan Dashboard, follow these steps:
+
+1. **Clone the Repository:**
+   ```sh
+   git clone https://github.com/NobelMitiku/Power-Bi-Sample-Project ```
+1. **Open Power BI::**
+
+- Open Power BI Desktop.
+- Load the provided .pbix file from the cloned repository.
+2. **Data Source Configuration:**
+
+- Ensure your data sources are correctly linked.
+- Update connection strings if necessary.
+3. **Exploring the Dashboards:**
+
+- Navigate through the different dashboards (Summary, Overview, Details) using the tabs.
+- Interact with the visuals to gain insights.
 
 ## Problem Statement
 
@@ -93,24 +115,5 @@ The Details Dashboard consolidates key loan-related metrics and data points into
 - Formatting Visuals
 - Navigations
 
-## Getting Started
-
-To explore and interact with the Bank Loan Dashboard, follow these steps:
-
-1. **Clone the Repository:**
-   ```sh
-   git clone https://github.com/NobelMitiku/Power-Bi-Sample-Project ```
-1. **Open Power BI::**
-
-- Open Power BI Desktop.
-- Load the provided .pbix file from the cloned repository.
-2. **Data Source Configuration:**
-
-- Ensure your data sources are correctly linked.
-- Update connection strings if necessary.
-3. **Exploring the Dashboards:**
-
-- Navigate through the different dashboards (Summary, Overview, Details) using the tabs.
-- Interact with the visuals to gain insights.
 ## Contribution
 Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request.
