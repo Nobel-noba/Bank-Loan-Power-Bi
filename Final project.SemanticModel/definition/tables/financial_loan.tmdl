@@ -1,0 +1,409 @@
+table financial_loan
+	lineageTag: 3c753ec4-1964-4bd1-8c96-49c1e9f6cbfe
+
+	measure 'Application MTD' = TOTALMTD(financial_loan[TotalLoanApplicaion],DateTable[Date])
+		formatString: 0
+		lineageTag: a28c266a-656c-4c49-9976-c9eb6710946f
+
+	measure 'Application PMTD' = TOTALMTD([TotalLoanApplicaion],DATEADD('DateTable'[Date],-1,MONTH))
+		formatString: 0
+		lineageTag: 1d2c5c7c-edbf-4c93-87eb-338840ada0b7
+
+	measure MOM = ```
+			(([Application MTD]-[Application PMTD])/[Application PMTD]) 
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 87617050-695a-4eca-9d71-a40c8a3f1232
+
+	measure TotalLoanApplicaion = COUNT(financial_loan[id])
+		formatString: 0
+		lineageTag: 64b0860a-c61a-422c-a696-e3c3e3ec2466
+
+	measure 'MTD Funded' = TOTALMTD([Total Funded],DateTable[Date])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 1b911e46-8ce7-443d-ab93-6c355f0f81d9
+
+	measure 'PMTD Funded' = TOTALMTD([Total Funded],DATEADD(DateTable[Date],-1,MONTH))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 58509e37-96fa-4411-b082-1af4d359d800
+
+	measure 'MOM Funded' = ([MTD Funded]-[PMTD Funded])/[PMTD Funded]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7ac91064-a76b-404f-978c-833bd59b21b4
+
+	measure 'Total Funded' = SUM(financial_loan[loan_amount])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 98d503c3-e2d0-4790-8293-56615b958638
+
+	measure 'Total Received' = SUM(financial_loan[total_payment])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 07bb4456-85b6-44d0-ada2-035837c5d267
+
+	measure 'MTD Received' = TOTALMTD([Total Received],DateTable[Date])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 797149fb-e792-48ef-b088-65490fc342d7
+
+	measure 'PMTD Received' = TOTALMTD([Total Received],DATEADD(DateTable[Date],-1,MONTH))
+		lineageTag: 91834041-9fe3-4306-957f-622163c3a3ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AVG Interest' = AVERAGE(financial_loan[int_rate])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4e736ceb-e648-4746-b681-987616fd80c6
+
+	measure 'MTD Intrest' = TOTALMTD([AVG Interest],DateTable[Date])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e857f1ab-61a3-4e42-add5-781194740cc6
+
+	measure 'PMTD Intrest' = TOTALMTD([AVG Interest],DATEADD(DateTable[Date],-1,MONTH))
+		lineageTag: 4d5759e9-9d65-4c05-a582-3df0262e0d5d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MOM Intrest' = ([MTD Intrest]-[PMTD Intrest])/[PMTD Intrest]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a894a1f4-35a9-4630-a14b-ad1c9a6bb0bc
+
+	measure 'AVG DTI' = AVERAGE(financial_loan[dti])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: cc2febcc-162d-4fca-93d0-2936df43ab5e
+
+	measure 'MDT DTI' = TOTALMTD([AVG DTI],DateTable[Date])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: afb945b1-55ec-4ae3-86d2-09ace0388aa8
+
+	measure 'PMDT DTI' = TOTALMTD([AVG DTI],DATEADD(DateTable[Date],-1,MONTH))
+		lineageTag: a6c9932d-b8b0-4488-8bb6-ad77928e103a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MOM DTI' = ([MDT DTI]-[PMDT DTI])/[PMDT DTI]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 572902cb-f10a-4841-874f-ec059c1ff07b
+
+	measure 'Good Loan %' = (CALCULATE([TotalLoanApplicaion],financial_loan[GOOD Loan OR Bad Loan] = "Good Loan"))/[TotalLoanApplicaion]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6a564703-5544-4053-9ce6-7620b45b096c
+
+	measure 'GOOD Loan Applicaion' = CALCULATE(COUNT(financial_loan[id]),financial_loan[GOOD Loan OR Bad Loan] = "Good Loan")
+		formatString: 0
+		lineageTag: 5e0f94f0-3159-42d9-a6d2-4fff3a7c88c2
+
+	measure 'GOOD Loan Received' = CALCULATE([Total Received],financial_loan[GOOD Loan OR Bad Loan] = "Good Loan")
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		lineageTag: 78040406-26e7-4398-a29b-1a3a235ae617
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'GOOD Loan Funded' = CALCULATE([Total Funded],financial_loan[GOOD Loan OR Bad Loan] = "Good Loan")
+		formatString: \$#,0.0;(\$#,0.0);\$#,0.0
+		lineageTag: e96fd1c7-1589-40a7-97ea-770b6c92ca8e
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'BAD Loan Applicaion' = CALCULATE(COUNT(financial_loan[id]),financial_loan[GOOD Loan OR Bad Loan] = "Bad Loan")
+		formatString: 0
+		lineageTag: 9f464d90-0525-4ec1-8fcc-134bcbffc6d8
+
+	measure 'BAD Loan Funded' = CALCULATE([Total Funded],financial_loan[GOOD Loan OR Bad Loan] = "Bad Loan")
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 922453fd-2e21-4355-924f-f91fcb4a6909
+
+	measure 'Bad Loan Received' = CALCULATE([Total Received],financial_loan[GOOD Loan OR Bad Loan] = "Bad Loan")
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: d8005a1c-50ba-40ab-b5fa-1982a0ab0036
+
+	measure 'Bad Loan %' = (CALCULATE([TotalLoanApplicaion],financial_loan[GOOD Loan OR Bad Loan] = "Bad Loan"))/[TotalLoanApplicaion]
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6b85d355-570f-4e31-b2d2-2548f901be93
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 94295bb9-ceae-402f-8be3-9ff19486bd92
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column address_state
+		dataType: string
+		lineageTag: 8016f856-ebaf-4d28-a9ab-73e2c4a2031b
+		summarizeBy: none
+		sourceColumn: address_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column application_type
+		dataType: string
+		lineageTag: 2412e106-9200-4fef-b436-a8fc55d3b21f
+		summarizeBy: none
+		sourceColumn: application_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column emp_length
+		dataType: string
+		lineageTag: 13886feb-aa48-430c-91e0-643c69f2ef6f
+		summarizeBy: none
+		sourceColumn: emp_length
+
+		annotation SummarizationSetBy = Automatic
+
+	column emp_title
+		dataType: string
+		lineageTag: 96748362-7f8c-42ac-a647-865be1e5666a
+		summarizeBy: none
+		sourceColumn: emp_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column grade
+		dataType: string
+		lineageTag: 0f44dec4-7ddd-4710-b858-f2f70e42a838
+		summarizeBy: none
+		sourceColumn: grade
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_ownership
+		dataType: string
+		lineageTag: cb75caee-83db-42b6-bfac-ab475212d6ee
+		summarizeBy: none
+		sourceColumn: home_ownership
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_date
+		dataType: dateTime
+		formatString: d mmmm\, yyyy
+		lineageTag: 5dcc522f-8bca-4d76-b411-5eefa037269a
+		summarizeBy: none
+		sourceColumn: issue_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column last_credit_pull_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 78b75d8a-b53c-4f31-b82b-a682e6bbea4a
+		summarizeBy: none
+		sourceColumn: last_credit_pull_date
+
+		variation Variation
+			isDefault
+			relationship: e920b3d5-3ab7-43b6-83e3-44b06bd103e9
+			defaultHierarchy: LocalDateTable_9cd5504e-3dc5-47eb-9344-348b88f7b0ab.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column last_payment_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3e83300b-e7a5-4eec-b1db-839a064d8583
+		summarizeBy: none
+		sourceColumn: last_payment_date
+
+		variation Variation
+			isDefault
+			relationship: 9b787ff2-9ca8-4410-8c69-6634eff098ff
+			defaultHierarchy: LocalDateTable_9e0947e0-190b-473b-a07e-226eadb77e5a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column loan_status
+		dataType: string
+		lineageTag: c6a2a4fd-be75-4b82-a604-3570c41b8f29
+		summarizeBy: none
+		sourceColumn: loan_status
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation __PBI_SemanticLinks = [{"LinkTarget":{"TableName":"financial_loan","TableItemName":"GOOD Loan OR Bad Loan","ObjectType":4},"LinkType":"UsedInGroup"}]
+
+	column next_payment_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c6016dae-16f5-42f6-8023-820122a1a950
+		summarizeBy: none
+		sourceColumn: next_payment_date
+
+		variation Variation
+			isDefault
+			relationship: b97d5e82-a502-4937-88eb-0d51dda6da7d
+			defaultHierarchy: LocalDateTable_aa997e7b-9922-4b15-a4ba-543f2008dbb8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column member_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 520d231f-950a-48e4-9d0e-dc89dbe789de
+		summarizeBy: sum
+		sourceColumn: member_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column purpose
+		dataType: string
+		lineageTag: 02c26055-2f9f-4f6c-bf5b-539398790dc8
+		summarizeBy: none
+		sourceColumn: purpose
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_grade
+		dataType: string
+		lineageTag: 406b046b-244c-476a-9692-2b91d8418def
+		summarizeBy: none
+		sourceColumn: sub_grade
+
+		annotation SummarizationSetBy = Automatic
+
+	column term
+		dataType: string
+		lineageTag: a17b6ec0-be51-45fe-9057-a0b6af3d7f11
+		summarizeBy: none
+		sourceColumn: term
+
+		annotation SummarizationSetBy = Automatic
+
+	column verification_status
+		dataType: string
+		lineageTag: 7767a1ec-4b5e-45c6-822a-d922f1c4bd0c
+		summarizeBy: none
+		sourceColumn: verification_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column annual_income
+		dataType: double
+		lineageTag: 04dc89e7-4256-4a27-9ef4-2c7ac3a6cee8
+		summarizeBy: sum
+		sourceColumn: annual_income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dti
+		dataType: double
+		lineageTag: b4c16565-07bc-4001-b058-c4faaffb4cbb
+		summarizeBy: sum
+		sourceColumn: dti
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column installment
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: e8fb8cd9-fbb4-46bd-8c76-c0ac4c70bd27
+		summarizeBy: sum
+		sourceColumn: installment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column int_rate
+		dataType: double
+		lineageTag: 57eaef6c-d46f-4368-a370-0d7df327466f
+		summarizeBy: sum
+		sourceColumn: int_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loan_amount
+		dataType: double
+		lineageTag: 59841189-f851-4832-95fa-29d7275d3014
+		summarizeBy: sum
+		sourceColumn: loan_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_acc
+		dataType: double
+		lineageTag: 1e42cb88-7a44-444e-ba4e-c6e296a10a03
+		summarizeBy: sum
+		sourceColumn: total_acc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_payment
+		dataType: double
+		lineageTag: 8a5a8061-4cfc-4938-8348-1181cf0287e5
+		summarizeBy: sum
+		sourceColumn: total_payment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'GOOD Loan OR Bad Loan' =
+			SWITCH(
+				TRUE,
+				ISBLANK('financial_loan'[loan_status]),
+				"(Blank)",
+				'financial_loan'[loan_status] IN {"Charged Off"},
+				"Bad Loan",
+				'financial_loan'[loan_status] IN {"Current",
+					"Fully Paid"},
+				"Good Loan",
+				'financial_loan'[loan_status]
+			)
+		dataType: string
+		lineageTag: be9e5645-364f-4ff1-aa80-c44b212650fc
+		summarizeBy: none
+		isDataTypeInferred
+
+		extendedProperty GroupingMetadata =
+				{
+				  "version": 0,
+				  "groupedColumns": [
+				    {
+				      "Column": {
+				        "Expression": {
+				          "SourceRef": {
+				            "Entity": "financial_loan"
+				          }
+				        },
+				        "Property": "loan_status"
+				      }
+				    }
+				  ]
+				}
+
+		annotation GroupingDesignState = {"Version":0,"Sources":[{"Name":"f","Entity":"financial_loan"}],"GroupedColumns":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"loan_status"}}],"GroupItems":[{"DisplayName":"(Blank)","BlankDefaultPlaceholder":true},{"DisplayName":"Bad Loan","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"loan_status"}}],"Values":[[{"Literal":{"Value":"'Charged Off'"}}]]}}},{"DisplayName":"Good Loan","Expression":{"In":{"Expressions":[{"Column":{"Expression":{"SourceRef":{"Source":"f"}},"Property":"loan_status"}}],"Values":[[{"Literal":{"Value":"'Current'"}}],[{"Literal":{"Value":"'Fully Paid'"}}]]}}}]}
+
+		annotation SummarizationSetBy = Automatic
+
+	partition financial_loan = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("DESKTOP-EP837JC\SQLEXPRESS", "LoanServices"),
+				    dbo_financial_loan = Source{[Schema="dbo",Item="financial_loan"]}[Data]
+				in
+				    dbo_financial_loan
+
+	annotation PBI_ResultType = Table
+

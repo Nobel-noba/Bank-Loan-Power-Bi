@@ -1,0 +1,67 @@
+table DateTable
+	lineageTag: c3301f99-315e-48fb-a93b-9029df7f416b
+
+	column Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 185717f4-ce26-4b49-9fa6-83eea7deb7af
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 4f5360a7-dd9e-47c4-9b04-06393764a0aa
+			defaultHierarchy: LocalDateTable_7aea1981-ed23-48c7-a614-03360c394bd3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day = FORMAT(DateTable[Date],"DDDD")
+		dataType: string
+		lineageTag: f342c487-7122-459e-a24c-188e9c7a8386
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Week = FORMAT(DateTable[Date],"W")
+		dataType: string
+		lineageTag: 2a34cab8-9a39-47f8-accc-e54eccad11cb
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = FORMAT(DateTable[Date],"YYYY")
+		dataType: string
+		lineageTag: 2d02f2d3-7afe-425a-98da-3f40b33e288f
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = FORMAT(DateTable[Date],"MMM")
+		dataType: string
+		lineageTag: 97c1c99b-ecee-422d-b9c5-fa66f0dd60e6
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: 'Month number'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month number' = MONTH(DateTable[Date])
+		dataType: int64
+		formatString: 0
+		lineageTag: f3d86972-67a1-42b6-bcc5-196176d9ca82
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DateTable = calculated
+		mode: import
+		source = CALENDAR(MIN(financial_loan[issue_date]),MAX(financial_loan[issue_date]))
+
+	annotation PBI_Id = a9237dbb750648119c66642de7a34d20
+

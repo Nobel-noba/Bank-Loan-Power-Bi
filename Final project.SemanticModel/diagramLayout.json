@@ -1,0 +1,61 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 480,
+            "y": 67.5
+          },
+          "nodeIndex": "DateTable",
+          "nodeLineageTag": "c3301f99-315e-48fb-a93b-9029df7f416b",
+          "size": {
+            "height": 235,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 118,
+            "y": 63
+          },
+          "nodeIndex": "financial_loan",
+          "nodeLineageTag": "3c753ec4-1964-4bd1-8c96-49c1e9f6cbfe",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 646,
+            "y": 95
+          },
+          "nodeIndex": "Select Measure",
+          "nodeLineageTag": "60497635-fbde-471b-a9aa-ef01949e345c",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
