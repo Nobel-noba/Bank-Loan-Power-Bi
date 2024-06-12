@@ -1,5 +1,22 @@
 # Bank Loan Dashboard Project
 
+## Table of Contents
+- [Overview](#overview)
+- [Problem Statement](#problem-statement)
+  - [Dashboard 1: Summary](#dashboard-1-summary)
+  - [Dashboard 1: Good Loan vs. Bad Loan KPIs](#dashboard-1-good-loan-vs-bad-loan-kpis)
+    - [Good Loan](#good-loan)
+    - [Bad Loan](#bad-loan)
+    - [Loan Status Grid View](#loan-status-grid-view)
+  - [Dashboard 2: Overview](#dashboard-2-overview)
+  - [Dashboard 3: Details](#dashboard-3-details)
+- [Functionalities Covered](#functionalities-covered)
+  - [Database and SQL](#database-and-sql)
+  - [SQL Server](#sql-server)
+  - [Power BI](#power-bi)
+- [Getting Started](#getting-started)
+- [Contribution](#contribution)
+
 ## Overview
 This project aims to create an interactive and comprehensive Power BI dashboard for a bank's loan portfolio. The dashboard provides insights into various aspects of loan applications, funding, and repayments, aiding data-driven decision-making.
 
@@ -82,7 +99,7 @@ To explore and interact with the Bank Loan Dashboard, follow these steps:
 
 1. **Clone the Repository:**
    ```sh
-   git clone https://github.com/yourusername/bank-loan-dashboard.git ```
+   git clone https://github.com/NobelMitiku/Power-Bi-Sample-Project ```
 1. **Open Power BI::**
 
 - Open Power BI Desktop.
