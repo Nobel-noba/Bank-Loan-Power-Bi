@@ -4,7 +4,7 @@
 - [Overview](#overview)
 - [Getting Started](#getting-started)
 - [Problem Statement](#problem-statement)
-  - [Dashboard 1: Summary](#dashboard-1-summary)
+  - [Summary](#dashboard-1-summary)
   - [Dashboard 1: Good Loan vs. Bad Loan KPIs](#dashboard-1-good-loan-vs-bad-loan-kpis)
     - [Good Loan](#good-loan)
     - [Bad Loan](#bad-loan)
