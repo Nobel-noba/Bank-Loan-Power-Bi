@@ -20,7 +20,11 @@
 ## Overview
 This project aims to create an interactive and comprehensive Power BI dashboard for a bank's loan portfolio. The dashboard provides insights into various aspects of loan applications, funding, and repayments, aiding data-driven decision-making.
 
+## Sample Images
+[Link Text](https://github.com/NobelMitiku/Power-Bi-Sample-Project/tree/master/screen%20shoots)
 
+## Microsoft SQL Server database data
+[Link Text](https://github.com/NobelMitiku/Power-Bi-Sample-Project/tree/master/data)
 
 ## Getting Started
 
