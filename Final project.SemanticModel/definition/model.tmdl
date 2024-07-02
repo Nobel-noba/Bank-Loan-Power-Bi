@@ -10,7 +10,7 @@ annotation PBI_QueryOrder = ["financial_loan"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.129.1229.0 (24.05)
+annotation PBIDesktopVersion = 2.130.930.0 (24.06)
 
 annotation PBI_ProTooling = ["DevMode"]
 
